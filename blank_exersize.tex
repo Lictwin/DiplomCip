@@ -1,0 +1,264 @@
+\documentclass[12pt, А4, twoside]{article} % задаём тип документа: статья - и его характеристики: 12-ый стандартный шрифт, размер листа А4
+
+% Внимание! Чтобы код ниже работал, необхоидмо переключиться на движок XeLaTe
+\usepackage{fontspec} % подключаем модуль для работы со шрифтами
+\PassOptionsToPackage{no-math}{fontspec} %  https://tex.stackexchange.com/a/26295/104425
+\usepackage{polyglossia} % Поддержка многоязычности
+\usepackage{ragged2e} % патек для нормального выравнивания текста
+\usepackage[normalem]{ulem}
+\usepackage[ % задаём макет документа
+left=2.8cm, % отступ от левого края 
+right=1.3cm, % отступ от правого края
+top=2.0cm, % отсутп сверху
+bottom=1.59cm, % отступ снизу
+%paperheight=11.69in, % высота листа
+%paperwidth=8.5in% % ширина листа
+]{geometry} 
+
+% настройка шрифтов и языков
+\defaultfontfeatures{Ligatures=TeX,Mapping=tex-text}
+
+\setmainlanguage[babelshorthands = true]{russian} % устанавливаемя русский как основной язык
+\setotherlanguage{english} % устанавливаем английский как дополнительный язык
+
+\defaultfontfeatures[ArrialNarrow]{ % подключаем шрифт из файлов
+	Path = fonts/,
+	Extension = .ttf,
+	UprightFont = arialnarrow,
+	BoldFont = arialnarrow_bold,
+	ItalicFont = arialnarrow_italic,
+	BoldItalicFont = arialnarrow_bolditalic,
+}
+
+\setmainfont{Times New Roman} % устанавливаем главный шрифт 
+\setsansfont[Ligatures=TeX]{ArialNarrow} % устонавливаем дополнительный шрмфт 
+
+\newfontfamily\cyrillicfont[Script=Cyrillic]{Times New Roman} % делаем так, чтобы русский язык мог отображаться главным шрифтом 
+\newfontfamily\cyrillicfontsf[Script=Cyrillic]{ArialNarrow} % делаем так, чтобы русский язык мог отображаться дополнительным шрифтом 
+
+\newfontfamily\englishfont{Times New Roman} % делаем так, чтобы английский язык мог отображаться главным шрифтом 
+\newfontfamily\englishfontsf{ArialNarrow} % делаем так, чтобы английский язык мог отображаться дополнительным шрифтом 
+
+\pagenumbering{gobble} % убирает нумерацию
+
+\begin{document} % начала тела документа, его основной части
+	
+	\begin{flushright}{\fontsize{11}{13.75}\selectfont \cyrillicfont
+			Форма №17
+	} \end{flushright}
+	% создали область видиния { <здесь текст, который подчиняется заданым настройкам> }
+	% \fontsize{x}{x * msm}\selectfont ползволяет задать размер шрифта и расстоение между строками. msm - межстрочный множитель
+	% \cyrillicfont позволяет использовать TNR для киррилицы
+	% \begin{FlushRight} <текст> \end{FlushRight} позволяет выравнять текст по правому краю
+	
+	\begin{center}  {\fontsize{14}{17.5}\selectfont \cyrillicfont 
+			УЧРЕЖДЕНИЕ ОБРАЗОВАНИЯ
+			\par % завершает абзац, но тут нужно, чтобы перенести остальную часть на новую сроку
+			“БРЕСТСКИЙ ГОСУДАРСТВЕННЫЙ ТЕХНИЧЕСКИЙ УНИВЕРСИТЕТ”
+	} \end{center}
+	
+	\begin{flushleft} % начала глобального выравнивания по левому краю
+		\fontsize{12}{15} % дальнейший текст 12pt
+		
+		\begin{tabular}{p{1.8cm} p{6.2cm} p{2.0cm} p{6.0cm}} 
+			% параметр p укащывает тип ячейки, а количество букв p указывает количество столбцов. Можно указать ширину ячейки p{x}. Вместо p можно использовать l, r, c. Ячейки отделяются между собой символом &.
+			& & & % вставляем пустую строку средствами таблицы
+			\\ % переход на ряд ниже
+			\textsf{Факультет} & 
+			\uline{\centering \hspace{2.4cm} \textsf{ ФЭИС } \hspace{2.4cm}\vspace{1pt}}  &
+			% \centering - выравниваем по центру
+			% \vspace{2pt} - вертикальный отступ
+			% \hline - рисуем линию, которая заполнит ячейку таблицы
+			\textsf{Кафедра} &
+			% \textsf{ <текст> } - используем ArialNarrow 
+			\uline{\centering \hspace{2.4cm} \textsf{ ИИТ } \hspace{2.4cm}\vspace{1pt}} 
+		\end{tabular} 
+		
+		\begin{tabular}{p{2.5cm} p{5.5cm}} 
+			& \\ 
+			\textsf{УТВЕРЖДАЮ} & \\
+			\textsf{Зав. Кафедрой} & \uline{\hspace{5.8cm}}\vspace{1pt}  \\ 
+			\hspace{2.8cm} &  \centering \textsf{(подпись)} 
+			% \hspace{2.8cm} оно нужно чтобы заполнить ячейку первого ряда, а вообще это горизонтальный отступ.
+		\end{tabular} 
+		
+		\begin{tabular}{p{1.0cm} p{5.0cm} p{2.0cm}} 
+			\textsf{<<18>>} & 
+			\centering \uline{ \hspace{1.7cm} \textsf{апреля} \hspace{1.7cm} }\vspace{1pt}  &
+			\textsf{2024 г.} \\
+		\end{tabular}
+		
+	\end{flushleft} % конец глобального выравнивания по левому краю
+	
+	\begin{center} 
+		\fontsize{24}{30} \textsf{ЗАДАНИЕ}
+		\par 
+		\fontsize{14}{17.5} \textrm{по дипломному проектированию}
+	\end{center}  
+	
+	\begin{flushleft} 
+		\fontsize{12}{15} % дальнейший текст 12pt
+		
+		\begin{tabular}{p{1.9cm} p{14.95cm}}
+			\textsf{Студенту} & 
+			\uline{\textsf{Двораниновичу Дмитрию Александровичу} \hspace{7.9cm}} \vspace{1pt}  
+		\end{tabular} 
+		
+		\begin{tabular}{p{2.8cm} p{14.05cm}}
+			\textsf{1. Тема проекта} & 
+			\uline{\textsf{Разработка модуля поиска аномалий временных рядов\phantom{абра кадабра этот латех дона} }}  \vspace{1pt}   
+		\end{tabular} 
+		
+		\begin{tabular}{p{2.8cm} p{14.05cm}} 
+			& \uline{\textsf{технологического процесса моечной станции} \hspace{6.6cm}} \vspace{1pt} 
+		\end{tabular} 
+		
+		\begin{tabular}{p{5.9cm} p{4.8cm} p{0.3cm} p{5.0cm}} 
+			\textsf{(Утверждена приказом по вузу от} &
+			\centering \uline{\hspace{1.4cm}\textsf{13.03.2024}\hspace{1.4cm}}  \vspace{2pt}  &
+			\centering \textsf{№} &
+			\centering  \uline{\hspace{1.6cm}\textsf{249-C \hspace{0.5cm} )}\hspace{1.5cm}}  
+		\end{tabular} 
+		
+		\begin{tabular}{p{9.4cm}  p{7.45cm}} 
+			\textsf{2. Сроки сдачи студентом законченного проекта} & \centering \uline{\hspace{3.0cm}\textsf{дата сдачи}\hspace{2.5cm}} \vspace{1pt} 
+		\end{tabular} 
+		
+		\begin{tabular}{p{5.7cm} p{11.15cm}} 
+			\textsf{3. Исходные данные к проекту} &
+			\vspace{1pt} \\
+		\end{tabular}   
+		
+		\begin{tabular}{p{17.25cm}}  
+			\textsf{\textbf{Общие требования к подсистеме:}} \vspace{1pt} \textsf{Язык программирования C++, платформа контроллеров}\\ \hline 
+			\textsf{PLCnext, система сборки CMake.} \vspace{1pt}\\ \hline 
+			\vspace{1pt}\\ \hline
+		\end{tabular}   
+		
+		\begin{tabular}{p{17.25cm}} 
+			\textsf{\textbf{Требования к функция подсистемы:}} \vspace{1pt} \textsf{Возможность настройки нейронной сети под требуемые}\\ \hline 
+			\textsf{ конфигурации, Возможность создания сети вручную, Возможность загрузки конфигурации сети из} \vspace{1pt}\\ \hline 
+			\textsf{ файла, Возможность использования cvs файлов качестве источника данных для обучения} \vspace{1pt}\\ \hline 
+			\textsf{ нейронных сетей} \vspace{1pt}\\ \hline 
+		\end{tabular}   
+		
+		\begin{tabular}{p{17.25cm}}
+			\textsf{\textbf{4. Содержание расчетно-пояснительной записки (перечень подлежащих разра-}} \vspace{1pt}\\ \hline 
+			\textsf{\textbf{ботке вопросов:)}} \vspace{1pt}\\ \hline 
+		\end{tabular} 
+		
+		\begin{tabular}{p{17.25cm}} 
+			\textsf{1.ВВЕДЕНИЕ} \vspace{1pt}\\ \hline 
+		\end{tabular} 
+		
+		\begin{tabular}{p{17.25cm}}
+			\textsf{2.АНАЛИЗ ПРЕДМЕТНОЙ ОБЛАСТИ И ПОСТАНОВКА ЗАДАЧИ} \vspace{1pt}\\ \hline 
+			\hspace{0.3cm}\textsf{2.1 Основные понятия предметной области} \vspace{1pt}\\ \hline 
+			\hspace{0.3cm}\textsf{2.2 Результаты обследования моечной станции} \vspace{1pt}\\ \hline 
+			\hspace{0.3cm}\textsf{2.3 Введение в прогнозирование, нейронные сети и анализ временных рядов} \vspace{1pt}\\ \hline 
+			\hspace{0.3cm}\textsf{2.4 Требования к модулю поиска аномалий и постановка задачи} \vspace{1pt}\\ \hline 
+		\end{tabular}  
+		
+		\begin{tabular}{p{17.25cm}} 
+			\textsf{3. АНАЛИЗ СУЩЕСТВУЮЩИХ РЕШЕНИЙ} \vspace{1pt}\\ \hline 
+		\end{tabular} 
+		
+		\begin{tabular}{p{17.25cm}} 
+			\textsf{4. АНАЛИЗ И ОБРАБОТКА ДАННЫХ МОЕЧНОЙ СТАНЦИИ} \vspace{1pt}\\ \hline 
+			\hspace{0.3cm}\textsf{4.1 Описание исходных данных технологического процесса, форматов данных и способов их хранения} \vspace{1pt}\\ \hline 
+			\hspace{0.3cm}\textsf{4.2 Определение взаимосвязей между данными } \vspace{1pt}\\ \hline 
+			\hspace{0.3cm}\textsf{4.3 Обработка данных и подготовка их к прогнозированию} \vspace{1pt}\\ \hline 
+		\end{tabular}    
+		
+		\begin{tabular}{p{17.25cm}} 
+			\textsf{5. РАЗРАБОТКА И ОБУЧЕНИЕ МОДЕЛИ НЕЙРОННОЙ СЕТИ} \vspace{1pt}\\ \hline 
+			\hspace{0.3cm}\textsf{5.1 Описание составляющих искусственного нейронного элемента и функций активации} \vspace{1pt} \\ \hline 
+			\hspace{0.3cm}\textsf{5.2 Выбор архитектуры нейронной сети} \vspace{1pt} \\ \hline 
+			\hspace{0.3cm}\textsf{5.3 Описание средств разработки нейронной сети, разработки и обучения модели нейронной сети} \vspace{1pt} \\ \hline 
+		\end{tabular}  
+		
+		\begin{tabular}{p{17.25cm}} 
+			\textsf{6. ТЕСТИРОВАНИЕ И ОЦЕНИВАНИЕ МОДЕЛИ} \vspace{1pt} \\ \hline 
+		\end{tabular} 
+		
+		\begin{tabular}{p{17.25cm}} 
+			\textsf{7. РАЗВЁРТЫВАНИЕ МОДЕЛИ НЕЙРОННОЙ СЕТИ} \vspace{1pt}\\ \hline 
+		\end{tabular}  
+		
+		\begin{tabular}{p{17.25cm}} 
+			\textsf{ЗАКЛЮЧЕНИЕ} \vspace{2pt}\\ \hline 
+			\textsf{СПИСОК СОКРАЩЕНИЙ} \vspace{1pt}\\ \hline 
+			\textsf{СПИСОК ЛИТЕРАТУРЫ} \vspace{2pt}\\ \hline 
+			\\ \hline
+		\end{tabular} 
+		
+		
+		\begin{tabular}{p{17.25cm}} 
+			\textsf{\textbf{5. Перечень графического материала (с точным указанием обязательных чертежей и графиков)}} \vspace{2pt}\\ \hline 
+			 \vspace{1pt}\\ \hline 
+			\textsf{1. Постановка задачи (плакат – формат А1)} \vspace{2pt}\\ \hline 
+			\textsf{2. Структура системы (плакат – формат А1)} \vspace{2pt}\\ \hline 
+			\textsf{3. Схема работы системы (чертеж “схема работы системы” – формат А1)} \vspace{2pt}\\ \hline 
+			\textsf{4. Схема программы (чертеж “схема программы” – формат А1)} \vspace{2pt}\\ \hline 
+			\textsf{5. Структура пользовательского интерфейса (плакат – формат А1)} \vspace{2pt}\\ \hline 
+			\textsf{6.  Результаты испытаний (плакат – формат А1)} \vspace{2pt}\\ \hline 
+		\end{tabular} 
+		
+		\begin{tabular}{p{17.25cm}} 
+			\vspace{1pt} \\ \hline 
+			\textsf{\textbf{6. Консультанты по проекту (с указанием относящихся к ним разделов проекта)}} \vspace{1pt} \\ \hline 
+			\vspace{1pt} \\ \hline 
+			\vspace{1pt} \\ \hline  
+			\vspace{1pt} \\ \hline 
+		\end{tabular}   
+		
+		\begin{tabular}{p{17.25cm}} 
+			\vspace{1pt} \\ \hline  
+			\textsf{\textbf{7. Дата выдачи задания: 18.04.2024 г.}} \vspace{1pt} \\ \hline 
+		\end{tabular} 
+		
+		\begin{tabular}{p{17.25cm}} 
+			\vspace{1pt} \\ \hline  
+			\textsf{\textbf{8. Календарный график работы над проектом на весь период проектирования (с указанием }} \vspace{1pt} \\ \hline 
+			\textsf{\textbf{сроков выполнения и трудоемкость отдельных этапов)}} \vspace{1pt} \\ \hline
+			\textsf{Раздел 1: 30.03 – 18.04: 20\%} \vspace{1pt} \\ \hline
+			\textsf{Раздел 2, 3: 19.04 – 04.05: 25\%} \vspace{1pt} \\ \hline
+			\textsf{Раздел 4, 5: 05.05 – 25.05: 30\%} \vspace{1pt} \\ \hline
+			\textsf{Раздел 6, 7: 26.05 – 01.06: 15\%} \vspace{1pt} \\ \hline
+			\textsf{Оформление проекта:   01.06  – 10.06:    10\%} \vspace{1pt} \\ \hline
+			 \vspace{1pt} \\ \hline
+		\end{tabular} 
+		
+		\begin{tabular}{p{4.2cm} p{3.8cm} p{6.0cm} p{2.0cm}} 
+			& & & 
+			\\ 
+			& & & 
+			\\
+			& \fontsize{14}{17.5} \textrm{Руководитель} & \uline{\hspace{5.8cm}}
+			\vspace{1pt}  & 
+			\\ 
+			& & \centering \fontsize{12}{15} \textsf{(подпись)} & 
+			\\ 
+			& & &
+		\end{tabular} 
+		
+		\fontsize{12}{15}
+		
+		\begin{tabular}{p{7.5cm} p{0.5cm} p{6.0cm} p{2.0cm}} % создаём таблицу
+			\textsf{Задание принял к исполнению (дата)} & &
+			\centering \uline{\hspace{2.1cm}\textsf{18.04.2024}\hspace{2.0cm}} \vspace{1pt}  & 
+			\\ % переход на ряд ниже
+			& & & % вставляем пустую строку средствами таблицы
+		\end{tabular} % конец таблицы
+		
+		\begin{tabular}{p{4.0cm} p{0.2cm} p{9.8cm} p{2.0cm}} % создаём таблицу
+			\textsf{(подпись студента)} & \multicolumn{2}{l}{\uline{\hspace{10.3cm}}}
+			\vspace{1pt}  &  
+			\\ % переход на ряд ниже
+		\end{tabular} % конец таблицы
+		
+	\end{flushleft} % конец выравнивания по левому краю
+	
+\end{document} % конец тела документа, его основной части
+
+
