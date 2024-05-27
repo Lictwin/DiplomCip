@@ -1,0 +1,125 @@
+\documentclass[a4paper, oneside, openany]{report}
+% a4paper - формат листа А4
+% oneside - односторонний вывод
+% openany - начинаем новую главу со следующей новой страницей
+% 14pt - стандартный размер шрифта 
+
+\usepackage{ragged2e} % патек для нормального выравнивания текста
+
+\usepackage{geometry} % пакет для работы с разметкой страницы
+\geometry{left=2.5cm} % левый отступ
+\geometry{right=1.0cm} % правый отступ
+\geometry{top=1.0cm} % верхний отступ
+\geometry{bottom=2.5cm} % нижний отступ
+
+\usepackage{titlesec} % пакет для работы с разделами 
+\newcommand{\sectionbreak}{\clearpage} % что каждый раздел начинался с новой страницы
+
+\usepackage{graphicx, epsfig} % для работы с графикой и картинками
+\usepackage[inkscapeformat=png]{svg} % для работы с svg картинками
+
+\usepackage{parskip} % сам настроит интервалы нужным образом
+
+\setcounter{page}{4} % устанавливаем начальную страницу
+
+\usepackage{caption} % для того, чтобы редактировать подписи к картинкам
+
+\usepackage{rotating} % для вращения картинок
+
+\usepackage{float} % чтобы нормально располагались картинки
+
+\usepackage{amsmath}
+
+\usepackage{enumitem}
+\setlist[enumerate]{align=left}
+
+% настройка шрифтов и языков
+    \usepackage[english, russian]{babel} % для работы с английским и русским языками
+    \usepackage[T2A]{fontenc} % для норм паказа символов в pdf
+    \usepackage[utf8]{inputenc} % для норм взаимодействия символов для самого tex
+
+    \usepackage{fontspec} % для работы со шрифтами 
+    \usepackage{polyglossia} % Поддержка многоязычности
+    \defaultfontfeatures{Ligatures=TeX,Mapping=tex-text}
+
+    \setmainlanguage[babelshorthands = true]{russian} % устанавливаемя русский как основной язык
+    \setotherlanguage{english} % устанавливаем английский как дополнительный язык
+
+    \setmainfont{Times New Roman} % устанавливаем главный шрифт 
+    \setsansfont[Ligatures=TeX]{Arial} % устонавливаем дополнительный шрмфт 
+
+    \newfontfamily\cyrillicfont[Script=Cyrillic]{Times New Roman} % делаем так, чтобы русский язык мог отображаться главным шрифтом 
+    \newfontfamily\cyrillicfontsf[Script=Cyrillic]{Arial} % делаем так, чтобы русский язык мог отображаться дополнительным шрифтом 
+
+    \newfontfamily\englishfont{Times New Roman} % делаем так, чтобы английский язык мог отображаться главным шрифтом 
+    \newfontfamily\englishfontsf{Arial} % делаем так, чтобы английский язык мог отображаться дополнительным шрифтом 
+
+% Определяем переменные 
+    \newcommand\spc{\hspace{0.08cm}} % отступ от каунтера
+    \newcommand\redline{\hspace{1.5cm}} % красная строка
+    \newcommand\titlespace{\vspace{26pt}} % промежуток между заголовками 
+    \newcommand\subtitlespace{\vspace{39pt}} % промежуток между заголовком и текстом 
+    \newcommand\gostFont{\cyrillicfont \englishfont \fontsize{13pt}{15.6pt}\selectfont} % набор необходимых параметров для обычного текста
+    \newcommand\gostTitleFont{\cyrillicfont \englishfont \fontsize{13pt}{0pt}\selectfont \bfseries} % набор необходимых параметров для текста заголовков
+    \newcommand\gostRamkaFont{\itshape \cyrillicfontsf \fontsize{8pt}{0pt}\selectfont}
+    \parskip=0pt % чтобы между абзацами было расстояние равное межстрочному интервалу
+
+
+% Рисует рамку
+    \usepackage{xltxtra}
+
+    \textheight=260mm
+    \textwidth=175mm
+    \unitlength=1mm
+    
+    \oddsidemargin=-0.5mm
+    \topmargin=-2.45cm
+
+    \def\Box#1#2{\makebox(#1,5){#2}}
+    \def\simpleGrad{\noindent\hbox to 0pt{
+            \vbox to 0pt{
+                \noindent
+                \begin{picture}(185,286.75)(5.5,0.7)
+                    \linethickness{0.5mm}
+                    \put(-0.5, 0){\framebox(184.5,287){}}
+                    \put(-0.5, 0){\Box{7}{\gostRamkaFont Изм.}}
+                    \put(-0.5, 15){\line(1,0){185}}
+
+                    \linethickness{0.25mm}
+                    \put(-0.5, 5){\line(1,0){65}}
+                    \put(-0.5, 10){\line(1,0){65}}
+                    \linethickness{0.5mm}
+
+                    \put(6.5, 0){\line(0,1){15}}
+                    \put(6.5, 0){\Box{10}{\gostRamkaFont Лист.}}
+                    \put(16.5, -0.25){\line(0,1){15}}
+                    \put(16.5, -0.25){\Box{15}{\gostRamkaFont № докум.}}
+                    \put(39.5, 0){\line(0,1){15}}
+                    \put(39.5, 0){\Box{10}{\gostRamkaFont Подп.}}
+                    \put(54.5, -0.25){\line(0,1){15}}
+                    \put(54.5, -0.25){\Box{10}{\gostRamkaFont Дата}}
+                    \put(64.5, 0){\line(0,1){15}}
+                    \put(64.5, 0){\makebox(109,15){\cyrillicfont \englishfont \fontsize{18pt}{0pt}\selectfont ДП.АС58.200018-05 81 00}}
+                    \put(174.5, 0){\makebox(10,25){\gostRamkaFont\selectfont Лист}}
+                    \put(174.5, 0){\line(0,1){15}}
+                    \put(174.5, 0){\makebox(10,10){\cyrillicfont \englishfont \fontsize{12pt}{0pt}\selectfont \thepage}}
+                    \put(174.5,10){\line(1,0){10}}
+                \end{picture}
+            }
+        }
+    }
+    
+    \makeatletter
+    \def\@oddhead{\simpleGrad}
+    \def\@oddfoot{}
+    \makeatother
+
+    \newcounter{chaptercntr}
+    \newcounter{subchaptercntr}
+    \setcounter{subchaptercntr}{1}
+    \newcounter{formulacntr}
+    \setcounter{formulacntr}{1}
+    \newcounter{imagecntr}
+    \setcounter{imagecntr}{1}
+    \newcounter{tablecntr}
+    \setcounter{tablecntr}{1}
