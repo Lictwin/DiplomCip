@@ -28,9 +28,24 @@
 
 \usepackage{float} % чтобы нормально располагались картинки
 
-\usepackage{amsmath}
+\usepackage{amsmath} % для нормальной работы с формулами
 
-\usepackage{enumitem}
+\usepackage{amsfonts} % для оборажения русских символов в формулах
+
+\usepackage{scalerel} % для изменения размера шрифта в формулах
+
+\usepackage{enumerate, enumitem} % 
+\setlist[itemize]{align=left} % выравнивание по левому краю в лейблах списков
+
+\usepackage{multirow} % для возможности объединения ячеек
+
+\usepackage{stackengine} 
+
+\usepackage{tabularray}
+
+\usepackage{nicematrix}
+ 
+
 \setlist[enumerate]{align=left}
 
 % настройка шрифтов и языков
@@ -54,15 +69,22 @@
     \newfontfamily\englishfont{Times New Roman} % делаем так, чтобы английский язык мог отображаться главным шрифтом 
     \newfontfamily\englishfontsf{Arial} % делаем так, чтобы английский язык мог отображаться дополнительным шрифтом 
 
-% Определяем переменные 
+% Определяем переменные
     \newcommand\spc{\hspace{0.08cm}} % отступ от каунтера
     \newcommand\redline{\hspace{1.5cm}} % красная строка
+    \newcommand\formulaspace{\vspace{0.4cm}} % красная строка
+    \newcommand\topTablespace{\vspace{15.6pt}} % отступ до начала таблиц
+    \newcommand\botTablespace{\vspace{18.2pt}} % отступ от конца таблиц
+    \newcommand\wherespace{\hspace{0.7cm}} % отступ для пояслений к формулам
     \newcommand\titlespace{\vspace{26pt}} % промежуток между заголовками 
     \newcommand\subtitlespace{\vspace{39pt}} % промежуток между заголовком и текстом 
     \newcommand\gostFont{\cyrillicfont \englishfont \fontsize{13pt}{15.6pt}\selectfont} % набор необходимых параметров для обычного текста
     \newcommand\gostTitleFont{\cyrillicfont \englishfont \fontsize{13pt}{0pt}\selectfont \bfseries} % набор необходимых параметров для текста заголовков
     \newcommand\gostRamkaFont{\itshape \cyrillicfontsf \fontsize{8pt}{0pt}\selectfont}
     \parskip=0pt % чтобы между абзацами было расстояние равное межстрочному интервалу
+    
+    \newcommand\FNine{\fontsize{9pt}{10.8pt}\selectfont} 
+    \newcommand\FTwelwe{\fontsize{12pt}{14.4pt}\selectfont}
 
 
 % Рисует рамку
@@ -123,3 +145,5 @@
     \setcounter{imagecntr}{1}
     \newcounter{tablecntr}
     \setcounter{tablecntr}{1}
+    \newcounter{itemcntr}
+    \setcounter{itemcntr}{1}
