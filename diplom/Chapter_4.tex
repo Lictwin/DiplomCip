@@ -8,7 +8,7 @@
    РАЗРАБОТКА, ОБУЧЕНИЕ И ОЦЕНКА МОДЕЛИ НЕЙРОННОЙ СЕТИ
 }
 
-\subtitlespace
+\titlespace
 
 \subsection*{ 
 	\gostTitleFont
@@ -17,7 +17,7 @@
 	Введение в прогнозирование, нейронные сети и машинное обучение
 } \addtocounter{subchaptercntr}{1}
 
-\titlespace
+\subtitlespace
 
 {\gostFont
 	
@@ -56,7 +56,7 @@
 	
 	\par \redline О нейронных сетях мы будет говорить, как о некоторой математической модели и её программной реализации, которая имитирует работу и взаимосвязи настоящих нейронов.  Рассматривая нейронную сеть как «чёрный ящик», изображённую на рисунке \thechaptercntr .\theimagecntr \spc, мы понимаем, что есть некоторое n входных данных и m преобразованных выходных данных. В зависимости от назначения сети входные данные могут обозначать исторические данные о процессе, необработанные картинки, зашумлённые чёрно-белые фотографии, текст с ошибками и так далее, а выходными данными могут быть прогнозы, картинки с размеченными на них объектами, восстановленные цветные фотографии, исправленные тексты и так далее. Как можно понять, нейронные сети весьма универсальное средство, которое может решать большой спектр задач. 
 	
-	\begin{figure}[H]
+	\begin{figure}
 		\centering
 		\def\svgwidth{\textwidth}
 		\includesvg[width=145mm]{images/NNBlackBox.svg}
@@ -66,7 +66,7 @@
 	
 	\par \redline Нейронная сеть, если её рассматривать уже как «белый ящик», состоит из нейронов. Эти нейроны могут связываться между собой различными способами, например, один нейрон к одному нейрону, один ко многим, иметь обратные связи и так далее. По большей части, то, какие связи имеются между нейронами в сети, определяет, так называемую, архитектуру нейронной сети. Далее нейроны собираются в упорядоченные нейронные слои. Таких слоёв может быть несколько. Тот слой, первый из которых работает с входными данными, называется входным слоем. Слой, который производит расчёт выходных значений, называется выходным слоем. Остальные слои называются скрытыми. Каждый из этих слоёв имеет собственную размерность. На рисунке \thechaptercntr.\theimagecntr \spc нейронные слои изображены как вертикальные последовательности из нейронов, изображённые кружочками.
 	
-	\begin{figure}[H]
+	\begin{figure}
 		\centering
 		\def\svgwidth{\textwidth}
 		\includesvg{images/NNWhiteBox.svg}
@@ -86,9 +86,9 @@
 	
 	\par \redline Пример расчёта нейрона:
 	
-	\begin{equation} \tag{\thechaptercntr .\theformulacntr}
-		y = F_{act}\left(w_1x_1 + w_2x_2 + \dots + w_nx_n + b\right)
-	\end{equation} \addtocounter{formulacntr}{1}
+		\formulaspace \par \redline 
+	$y = F_{act}\left(w_1x_1 + w_2x_2 + \dots + w_nx_n + b\right)$\hfill (\thechaptercntr .\theformulacntr) \redline
+	\formulaspace \addtocounter{formulacntr}{1}
 	
 	\par \redline И так, теперь перейдём к машинному обучению – набор алгоритмов, благодаря которым осуществляется обучение нейронной сети. А её обучение можно ещё определить, как подбор или поиск таких значений весов и смещений или порогов каждого нейрона, чтобы нейронная сеть выдавала необходимые результаты. 
 	
@@ -175,8 +175,8 @@
 	\formulaspace \addtocounter{formulacntr}{1}
 	
 	\begin{tabular}{p{0,875cm}p{0,3cm}p{15,175cm}}
-		& где  & $\textrm{X}=(\textrm{x}_\textrm{1},\textrm{x}_\textrm{2},\dots,\textrm{x}_\textrm{n})$ {--} вектор-строка входных сигналов; \\
-		&      & $\textrm{F}}$ {--} оператор нелинейного преобразования; \\
+		& где  & $X=(x_1,x_2,\dots,x_n)$ {--} вектор-строка входных сигналов; \\
+		&      & $F$ {--} оператор нелинейного преобразования; \\
 	\end{tabular}
 	
 	\par \redline Общее количество синаптических связей многослойного персептрона равно:
@@ -353,7 +353,7 @@
 		&      & $e_{j}$ {--} эталонное значение для j-го нейрона. \\
 	\end{tabular}
 	
-	\par \redline \textbf{Теорема.} Для любого скрытого слоя i ошибка i-го нейронного элемента определяется рекурсивным образом через ошибки нейронов следующего jго слоя:
+	\par \redline \textbf{Теорема.} Для любого скрытого слоя i ошибка i-го нейронного элемента определяется рекурсивным образом через ошибки нейронов следующего j-го слоя:
 	
 	\formulaspace \par \redline 
 	$\gamma_{i} =  \sum \limits _{j=1}^{m} \gamma_{j} F'(S_{j}) w_{ij}$\hfill (\thechaptercntr .\theformulacntr) \redline
@@ -362,77 +362,423 @@
 	\begin{tabular}{p{0,875cm}p{0,3cm}p{15,175cm}}
 		& где  & $m$ {--} количество нейронов следующего слоя по отношению к слою i; \\
 		&      & $w_{ij}$ {--} синаптическая связь между i-м и j-м нейроном различных слоёв; \\
-		&      & $S_{j}$ {--} взвешенная сумма j-го нейрона; \\
+		&      & $S_{j}$ {--} взвешенная сумма j-го нейрона. \\
 	\end{tabular}
 	
-	\par \redline Обучение данным методом строится на следующих шагах:
+	\par \redline \textbf{Доказательство.}  Ошибка i-го нейронного элемента рассчитывается как
 	
-	\par \redline 1. Задается шаг обучения $\alpha$  $(0 < \alpha < 1)$ и желаемая среднеквадратичная ошибка нейронной сети $E_e$.
-	\par \redline 2. Случайным образом инициализируются весовые коэффициенты и пороговые значения нейронной сети в достаточно узком диапазоне значений, например [–0,1; 0,1].
-	\par \redline 3. Последовательно подаются входные образы из обучающей выборки k = 1, L на вход нейронной сети и для каждого входного образа
-	выполняются следующие действия:
-	
-	\par \redline a) производится фаза прямого распространения входного образа по нейронной сети и вычисляется выходная активность всех нейронных элементов сети:
-	
-		\formulaspace \par \redline 
-	$y_{j} = F(\sum \limits _{i}^{} w_{ij}y_{i} - T_{j}) $
-	\hfill (\thechaptercntr .\theformulacntr) \redline
+	\formulaspace \par \redline 
+	$\gamma_{i} =  \dfrac{\partial E}{\partial y_i}$\hfill (\thechaptercntr .\theformulacntr) \redline
 	\formulaspace \addtocounter{formulacntr}{1}
 	
 	\begin{tabular}{p{0,875cm}p{0,3cm}p{15,175cm}}
-		& где  & $j$ {--} где индекс j характеризует нейроны следующего слоя по отношению к
-		слою i; \\
-		&      & $y_{i}$ {--} выходное значение i-го нейрона ; \\
-		&      & $w_{ij}$ {--} весовой коэффициент i-го нейрона; \\
-		&      & $T_{j}$ {--} порог j-го нейрона. \\
+		& где  & $E$ {--} среднеквадратичная ошибка нейронной сети; \\
+		&      & $y_{i}$ {--} Выходное значение i-го нейрона. \\
 	\end{tabular}
 	
-	\par \redline б) производится фаза обратного распространения сигнала, в результате которой определяется ошибка $\gamma_{j}$, $j=1,2,\dots, $нейронных элементов
-	для всех слоев сети. 
+	\par \redline Ошибка $\gamma_{i}$ зависит от ошибки нейронных элементов следующего слоя $j$ и вычисляется по формуле:
 	
 	\formulaspace \par \redline 
-	$\gamma_{j} = y_{j} - e_{j} $\hfill (\thechaptercntr .\theformulacntr) \redline
+	$\gamma_{i} =  \dfrac{\partial E}{\partial y_i} = \sum \limits _{j}^{} \dfrac{\partial E}{\partial y_j} \dfrac{\partial y_j}{\partial S_j} \dfrac{\partial S_j}{\partial y_i} $\hfill (\thechaptercntr .\theformulacntr) \redline
 	\formulaspace \addtocounter{formulacntr}{1}
+	
+	\begin{tabular}{p{0,875cm}p{0,3cm}p{15,175cm}}
+		& где  & $E$ {--} среднеквадратичная ошибка нейронной сети; \\
+		&      & $y_{i}$ {--} Выходное значение i-го нейрона. \\
+	\end{tabular}
+	
+	\par \redline Так как:
+	
+	\formulaspace \par \redline 
+	$ \dfrac{\partial E}{\partial y_j} = \gamma_{j} $\hfill (\thechaptercntr .\theformulacntr) \redline
+	\formulaspace \addtocounter{formulacntr}{1}
+	
+	\formulaspace \par \redline 
+	$ \dfrac{\partial S_j}{\partial y_i} = w_{ij}$\hfill (\thechaptercntr .\theformulacntr) \redline
+	\formulaspace \addtocounter{formulacntr}{1}
+	
+	\formulaspace \par \redline 
+	$ \dfrac{\partial y_j}{\partial S_j} = F'(S_{j})$\hfill (\thechaptercntr .\theformulacntr) \redline
+	\formulaspace \addtocounter{formulacntr}{1}
+	
+	\par \redline То:
 	
 	\formulaspace \par \redline 
 	$\gamma_{i} =  \sum \limits _{j}^{} \gamma_{j} F'(S_{j}) w_{ij}$\hfill (\thechaptercntr .\theformulacntr) \redline
 	\formulaspace \addtocounter{formulacntr}{1}
 	
 	\begin{tabular}{p{0,875cm}p{0,3cm}p{15,175cm}}
-		& где  & $w_{ij}$ {--} синаптическая связь между i-м и j-м нейроном различных слоёв; \\
-		&      & $S_{j}$ {--} взвешенная сумма j-го нейрона; \\
-		&      & $y_{j}$ {--} выходное значение для j-го нейрона; \\
-		&      & $e_{j}$ {--} эталонное значение для j-го нейрона. \\
+		& где  & $E$ {--} среднеквадратичная ошибка нейронной сети; \\
+		&      & $y_{i}$ {--} Выходное значение i-го нейрона. \\
 	\end{tabular}
-
-	\par \redline в) для каждого слоя нейронной сети происходит изменение весовых коэффициентов и порогов нейронных элементов в соответствии с обобщенным дельта-правилом:
-
-\formulaspace \par \redline 
-$w_{ij}(t+1) = w_{ij}(t) - \alpha \gamma_{j} F'(S_{j}) y_{i}} $\hfill (\thechaptercntr .\theformulacntr) \redline
-\formulaspace \addtocounter{formulacntr}{1}
-
-\formulaspace \par \redline 
-$T_{j}(t+1) = T_{j}(t) + \alpha \gamma_{j} F'(S_{j}) $\hfill (\thechaptercntr .\theformulacntr) \redline
-\formulaspace \addtocounter{formulacntr}{1}
-
-\begin{tabular}{p{0,875cm}p{0,3cm}p{15,175cm}}
-	& где  & $E$ {--} среднеквадратичная ошибка для одного образа; \\
-	&      & $y_{i}$ {--} выходное значение для i-го нейрона; \\
-	&      & $\alpha$ {--} шаг обучения нейронной сети; \\
-	&      &  $w_{ij}$ {--} синаптическая связь между i-м и j-м нейроном различных слоёв; \\
-	&      & $T_{j}$ {--} порог j-го нейрона. \\
-\end{tabular}
-
-	\par \redline 4. Последовательно подаются входные образы из обучающей выборки k L 1, и вычисляется суммарная квадратичная ошибка нейронной сети:
 	
-	где L – размерность обучающей выборки.
-	\par \redline 5. Если
-	$E_s > E_e$ то происходит переход к шагу 3 алгоритма. В противном случае алгоритм обратного распространения ошибки заканчивается.
-	Таким образом, данный алгоритм функционирует до тех пор, пока
-	суммарная квадратичная ошибка сети не станет меньше заданной, т. е.
-	$E_s \leq E_e$ .
+	\par \redline Используя результаты теоремы, можно найти ошибки нейронов любого скрытого слоя через ошибки нейронов следующего слоя по отношению к скрытому. 
+%	Так, например, ошибки нейронных элементов k-го слоя определяются как:
+%	
+%	\formulaspace \par \redline 
+%	$\gamma_{k} =  \sum \limits _{i}^{} \gamma_{i} F'(S_{i}) w_{ki}$\hfill (\thechaptercntr .\theformulacntr) \redline
+%	\formulaspace \addtocounter{formulacntr}{1}
+
+    \par \redline \textbf{Теорема.} Производные среднеквадратичной ошибки по весовым коэффициентам и порогам нейронных элементов для любых двух слоев i и j многослойного персептрона вычисляются следующим образом:
+	
+	\formulaspace \par \redline 
+	$ \dfrac{\partial E}{\partial w_{ij}} = \gamma_{j} F'(S_{j}) y_{i}$\hfill (\thechaptercntr .\theformulacntr) \redline
+	\formulaspace \addtocounter{formulacntr}{1}
+	
+	\formulaspace \par \redline 
+	$\dfrac{\partial E}{\partial T_{j}} = - \gamma_{j} F'(S_{j})$\hfill (\thechaptercntr .\theformulacntr) \redline
+	\formulaspace \addtocounter{formulacntr}{1}
+	
+	\begin{tabular}{p{0,875cm}p{0,3cm}p{15,175cm}}
+		& где  & $E$ {--} среднеквадратичная ошибка нейронной сети; \\
+		&      & $y_{i}$ {--} Выходное значение i-го нейрона. \\
+	\end{tabular}
+	
+	\par \redline \textbf{Доказательство.} Найдем производные среднеквадратичной ошибки для различных слоев нейронной сети. Тогда для выходного слоя имеем:
+	
+	\formulaspace \par \redline 
+	$\dfrac{\partial E}{\partial w_{ij}} = \dfrac{\partial E}{\partial y_j} \dfrac{\partial y_j}{\partial S_j} \dfrac{\partial S_j}{\partial w_{ij}}$\hfill (\thechaptercntr .\theformulacntr) \redline
+	\formulaspace \addtocounter{formulacntr}{1}
+	
+	\formulaspace \par \redline 
+	$\dfrac{\partial E}{\partial T_{j}} = \dfrac{\partial E}{\partial y_j} \dfrac{\partial y_j}{\partial S_j} \dfrac{\partial S_j}{\partial T_{j}}$\hfill (\thechaptercntr .\theformulacntr) \redline
+	\formulaspace \addtocounter{formulacntr}{1}
+	
+	\par \redline Если:
+	
+	\formulaspace \par \redline 
+	$\dfrac{\partial E}{\partial y_j} = \gamma_{j} =  y_{j} - e_{j}$\hfill (\thechaptercntr .\theformulacntr) \redline
+	\formulaspace \addtocounter{formulacntr}{1}
+	
+	\formulaspace \par \redline 
+	$\dfrac{\partial y_j}{\partial S_j} =  F'(S_{j})$\hfill (\thechaptercntr .\theformulacntr) \redline
+	\formulaspace \addtocounter{formulacntr}{1}
+	
+	\formulaspace \par \redline 
+	$\dfrac{\partial S_j}{\partial w_{ij}} =  y_{i}$\hfill (\thechaptercntr .\theformulacntr) \redline
+	\formulaspace \addtocounter{formulacntr}{1}\\
+	
+	\formulaspace \par \redline 
+	$\dfrac{\partial S_j}{\partial T_{j}} = -1 $\hfill (\thechaptercntr .\theformulacntr) \redline
+	\formulaspace \addtocounter{formulacntr}{1}
+	
+	\par \redline То:
+	
+		\formulaspace \par \redline 
+	$\dfrac{\partial E}{\partial w_{ij}} = (y_{j} - e_{j}) F'(S_{j}) y_{i}$\hfill (\thechaptercntr .\theformulacntr) \redline
+	\formulaspace \addtocounter{formulacntr}{1}\\
+	
+	\formulaspace \par \redline 
+	$\dfrac{\partial E}{\partial T_{j}} = - (y_{j} - e_{j})  F'(S_{j})$\hfill (\thechaptercntr .\theformulacntr) \redline
+	\formulaspace \addtocounter{formulacntr}{1}
+	
+	\par \redline Таким образом, для выходного слоя теорема доказана. Рассмотрим теперь скрытый слой i. Для него производные среднеквадратичной ошибки по весовым коэффициентам и порогам вычисляются как:
+		
+	\formulaspace \par \redline 
+	$\dfrac{\partial E}{\partial w_{ki}} =  \sum \limits _{j}^{} \dfrac{\partial E}{\partial y_j} \dfrac{\partial y_j}{\partial S_j} \dfrac{\partial S_j}{\partial y_{i}}\dfrac{\partial y_i}{\partial S_i} \dfrac{\partial S_i}{\partial w_{ki}}$\hfill (\thechaptercntr .\theformulacntr) \redline
+	\formulaspace \addtocounter{formulacntr}{1}
+	
+	\formulaspace \par \redline 
+	$\dfrac{\partial E}{\partial T_{i}} =  \sum \limits _{j}^{} \dfrac{\partial E}{\partial y_j} \dfrac{\partial y_j}{\partial S_j} \dfrac{\partial S_j}{\partial y_{i}}\dfrac{\partial y_i}{\partial S_i} \dfrac{\partial S_i}{\partial T_{i}}$\hfill (\thechaptercntr .\theformulacntr) \redline
+	\formulaspace \addtocounter{formulacntr}{1}
+	
+	\par \redline Поскольку:
+	 
+	\formulaspace \par \redline 
+	$\gamma_{i} =  \dfrac{\partial E}{\partial y_i} = \sum \limits _{j}^{} \dfrac{\partial E}{\partial y_j} \dfrac{\partial y_j}{\partial S_j} \dfrac{\partial S_j}{\partial y_i} = \sum \limits _{j=1}^{m} \gamma_{j} F'(S_{j}) w_{ij}$\hfill (\thechaptercntr .\theformulacntr) \redline
+	\formulaspace \addtocounter{formulacntr}{1}
+	
+	\par \redline То:
+	
+		\formulaspace \par \redline 
+	$\dfrac{\partial E}{\partial w_{ki}} =  \gamma_{i} \dfrac{\partial y_i}{\partial S_i} \dfrac{\partial S_i}{\partial w_{ki}}$\hfill (\thechaptercntr .\theformulacntr) \redline
+	\formulaspace \addtocounter{formulacntr}{1}
+	
+	\formulaspace \par \redline 
+	$\dfrac{\partial E}{\partial T_{i}} =  \gamma_{i}\dfrac{\partial y_i}{\partial S_i} \dfrac{\partial S_i}{\partial T_{i}}$\hfill (\thechaptercntr .\theformulacntr) \redline
+	\formulaspace \addtocounter{formulacntr}{1}
+	
+	\par \redline Найдем оставшиеся производные:
+	
+		\formulaspace \par \redline 
+	$\dfrac{\partial y_i}{\partial S_i} =  F'(S_{i})$\hfill (\thechaptercntr .\theformulacntr) \redline
+	\formulaspace \addtocounter{formulacntr}{1}
+	
+	\formulaspace \par \redline 
+	$\dfrac{\partial S_i}{\partial w_{ki}} =  y_{k}$\hfill (\thechaptercntr .\theformulacntr) \redline
+	\formulaspace \addtocounter{formulacntr}{1}\\
+	
+	\formulaspace \par \redline 
+	$\dfrac{\partial S_i}{\partial T_{i}} = -1 $\hfill (\thechaptercntr .\theformulacntr) \redline
+	\formulaspace \addtocounter{formulacntr}{1}
+	
+	\begin{tabular}{p{0,875cm}p{0,3cm}p{15,175cm}}
+		& где  & $E$ {--} среднеквадратичная ошибка нейронной сети; \\
+		&      & $y_{i}$ {--} Выходное значение i-го нейрона. \\
+	\end{tabular}
+	
+	\par \redline Подставляя вышеприведенные формулы в выражения получим:
+	
+	\formulaspace \par \redline 
+	$\dfrac{\partial E}{\partial w_{ki}} =  \gamma_{i} F'(S_{i}) y_k$\hfill (\thechaptercntr .\theformulacntr) \redline
+	\formulaspace \addtocounter{formulacntr}{1}
+	
+	\formulaspace \par \redline 
+	$\dfrac{\partial E}{\partial T_{i}} =  - \gamma_{i}F'(S_{i})$\hfill (\thechaptercntr .\theformulacntr) \redline
+	\formulaspace \addtocounter{formulacntr}{1}
+	
+	\begin{tabular}{p{0,875cm}p{0,3cm}p{15,175cm}}
+		& где  & $E$ {--} среднеквадратичная ошибка нейронной сети; \\
+		&      & $y_{i}$ {--} Выходное значение i-го нейрона. \\
+	\end{tabular}
+	
+	\par \redline Что и требовалось доказать.
+	
+	\par \redline \textbf{Следствие.}  Для минимизации суммарной квадратичной ошибки сети при последовательном обучении весовые коэффициенты и пороги нейронных элементов любых двух слоев i и j нейронной сети с течением времени должны изменяться следующим образом:
+	
+	\formulaspace \par \redline 
+	$w_{ij}(t+1) = w_{ij}(t) - \alpha \gamma_{j} F'(S_{j}) y_{i} $\hfill (\thechaptercntr .\theformulacntr) \redline
+	\formulaspace \addtocounter{formulacntr}{1}
+	
+	\formulaspace \par \redline 
+	$T_{j}(t+1) = T_{j}(t) + \alpha \gamma_{j} F'(S_{j}) $\hfill (\thechaptercntr .\theformulacntr) \redline
+	\formulaspace \addtocounter{formulacntr}{1}
+	
+	\begin{tabular}{p{0,875cm}p{0,3cm}p{15,175cm}}
+		& где  & $E$ {--} среднеквадратичная ошибка нейронной сети; \\
+		&      & $y_{i}$ {--} Выходное значение i-го нейрона. \\
+	\end{tabular}
+	
+	\par \redline Данное следствие является очевидным. Оно определяет правило обучения многослойных персептронов в общем виде, которое называется обобщенным дельта-правилом
+	
+	\par \redline В случае группового обучения модификация синаптических связей происходит после подачи группы или всех образов из обучающей выборки на нейронную сеть. В этом случае в методе градиентного спуска используется суммарная квадратичная ошибка для группы из $L_1$ образов, после подачи которых на вход сети модифицируются синаптические связи:
+	
+	\formulaspace \par \redline 
+	$w_{ij}(t+1) = w_{ij}(t) - \alpha \dfrac{\partial E_s (L_1)}{\partial w_{ij}} $\hfill (\thechaptercntr .\theformulacntr) \redline
+	\formulaspace \addtocounter{formulacntr}{1}
+	
+	\formulaspace \par \redline 
+	$T_{j}(t+1) = T_{j}(t) + \alpha \dfrac{\partial E_s (L_1)}{\partial T_{j}} $\hfill (\thechaptercntr .\theformulacntr) \redline
+	\formulaspace \addtocounter{formulacntr}{1}
+	
+	\begin{tabular}{p{0,875cm}p{0,3cm}p{15,175cm}}
+		& где  & $E$ {--} среднеквадратичная ошибка нейронной сети; \\
+		&      & $y_{i}$ {--} Выходное значение i-го нейрона. \\
+	\end{tabular}
+	
+	Здесь $w_{ij}(t)$ и $T_{j}(t)$ – синаптические связи до подачи на нейронную сеть $L$ образов из обучающей выборки, $E_s (L_1)$ – суммарная квадратичная ошибка сети для $L_1$:
+	
+	\formulaspace \par \redline 
+	$E_{s} = \frac{1}{2} \sum \limits _{k=1}^{L} \sum \limits _{j=1}^{p} (y_{j}^{k} - e_{j}^{k})^{2} $\hfill (\thechaptercntr .\theformulacntr) \redline
+	\formulaspace \addtocounter{formulacntr}{1}
+	
+		\formulaspace \par \redline 
+	$y_{j}^{k} = F(S_{j}^{k}) $\hfill (\thechaptercntr .\theformulacntr) \redline
+	\formulaspace \addtocounter{formulacntr}{1}
+	
+		\formulaspace \par \redline 
+	$S_{j}^{k} = \sum \limits _{i}^{} w_{ij}y_{j}^{k} - T_{j}$\hfill (\thechaptercntr .\theformulacntr) \redline
+	\formulaspace \addtocounter{formulacntr}{1}
+	
+	\begin{tabular}{p{0,875cm}p{0,3cm}p{15,175cm}}
+		& где  & $y_{j}^{k}$ {--} выходное значение для j-го нейрона; \\
+		&      & $e_{j}^{k}$ {--} эталонное значение для j-го нейрона; \\
+		&      & $L $ {--} размерность обучающей выборки. \\
+	\end{tabular}
+	
+	\par \redline С учетом результатов предыдущего раздела на основе теоремы можно сформулировать следствие для группового обучения.
+	
+	\par \redline \textbf{Следствие.} В случае группового обучения для минимизации суммарной квадратичной ошибки весовые коэффициенты и пороговые значения любых двух слоев i и j нейронной сети должны изменяться следующим образом:
+	
+	\formulaspace \par \redline 
+	$w_{ij}(t+1) = w_{ij}(t) - \alpha \sum \limits _{k=1}^{L_1} \gamma_{j}^{k} F'(S_{j}^{k})  y_{i}^{k}$\hfill (\thechaptercntr .\theformulacntr) \redline
+	\formulaspace \addtocounter{formulacntr}{1}
+	
+	\formulaspace \par \redline 
+	$T_{j}(t+1) = T_{j}(t) + \alpha \sum \limits _{k=1}^{L_1} \gamma_{j}^{k} F'(S_{j}^{k}) $\hfill (\thechaptercntr .\theformulacntr) \redline
+	\formulaspace \addtocounter{formulacntr}{1}
+	
+		\formulaspace \par \redline 
+	$ F'(S_{j}^{k}) = \dfrac{\partial y_{j}^{k}}{\partial S_{j}^{k}} $\hfill (\thechaptercntr .\theformulacntr) \redline
+	\formulaspace \addtocounter{formulacntr}{1}
+	
+	\begin{tabular}{p{0,875cm}p{0,3cm}p{15,175cm}}
+		& где  & $y_{j}^{k}$ {--} выходное значение для j-го нейрона; \\
+		&      & $e_{j}^{k}$ {--} эталонное значение для j-го нейрона; \\
+		&      & $L $ {--} размерность обучающей выборки. \\
+	\end{tabular}
+	
+	\par \redline Данное правило обучения называется обобщенным дельта-правилом для группового обучения.
+	
+	\par \redline \textbf{Примечание.} Метод градиентного спуска для последовательного или группового обучения, если используются группы образов небольшого размера (minibatch) и происходит случайный выбор образов из обучающей выборки, называется методом стохастического градиентного спуска (stochastic gradient descent, SGD)
+	
+	\par \redline На методе градиентного спуска строится метод обучения нейронных сетей называемый Метод Обратного Распространения Ошибки. Алгоритм был предложен в 1986 г. несколькими учеными независимо друг от друга. Данный метод применяется в данной работе, как основной метод обучения нейронных сетей типа многослойный персептрон. Обучение методом обратного распространения ошибки строится на следующих шагах:
+	
+	\begin{itemize}[leftmargin=2.15cm, labelwidth=0.65cm, labelsep=0.0cm] 
+		
+		\item[\theitemcntr. ] Задается шаг обучения $\alpha$  $(0 < \alpha < 1)$ и желаемая среднеквадратичная ошибка нейронной сети $E_e$.
+		
+		\addtocounter{itemcntr}{1}
+		
+		\item[\theitemcntr. ] Случайным образом инициализируются весовые коэффициенты и пороговые значения нейронной сети в достаточно узком диапазоне значений, например [–0,1; 0,1].
+		
+		\addtocounter{itemcntr}{1}
+		
+		\item[\theitemcntr. ] Последовательно подаются входные образы из обучающей выборки $k = \overline{1,L}$ на вход нейронной сети и для каждого входного образа выполняются следующие действия:
+		
+		\begin{itemize}[leftmargin=1.5cm, labelwidth=0.65cm, labelsep=0.0cm] 
+			
+			\item[a)] производится фаза прямого распространения входного образа по нейронной сети и вычисляется выходная активность всех нейронных элементов сети:
+			
+			\formulaspace \par \redline 
+			$y_{j} = F(\sum \limits _{i}^{} w_{ij}y_{i} - T_{j}) $
+			\hfill (\thechaptercntr .\theformulacntr) \redline
+			\formulaspace \addtocounter{formulacntr}{1}
+			
+			\begin{tabular}{p{0,875cm}p{0,3cm}p{11,175cm}}
+				& где  & $j$ {--} где индекс j характеризует нейроны следующего слоя по отношению к
+				слою i; \\
+				&      & $y_{i}$ {--} выходное значение i-го нейрона ; \\
+				&      & $w_{ij}$ {--} весовой коэффициент i-го нейрона; \\
+				&      & $T_{j}$ {--} порог j-го нейрона. \\
+			\end{tabular}
+			\item[б)]	производится фаза обратного распространения сигнала, в результате которой определяется ошибка $\gamma_{j}$, $j=1,2,\dots, $нейронных элементов
+			для всех слоев сети. 
+			
+			\formulaspace \par \redline 
+			$\gamma_{j} = y_{j} - e_{j} $\hfill (\thechaptercntr .\theformulacntr) \redline
+			\formulaspace \addtocounter{formulacntr}{1}
+			
+			\formulaspace \par \redline 
+			$\gamma_{i} =  \sum \limits _{j}^{} \gamma_{j} F'(S_{j}) w_{ij}$\hfill (\thechaptercntr .\theformulacntr) \redline
+			\formulaspace \addtocounter{formulacntr}{1}
+			
+			\begin{tabular}{p{0,875cm}p{0,3cm}p{11,175cm}}
+				& где  & $w_{ij}$ {--} синаптическая связь между i-м и j-м нейроном различных слоёв; \\
+				&      & $S_{j}$ {--} взвешенная сумма j-го нейрона; \\
+				&      & $y_{j}$ {--} выходное значение для j-го нейрона; \\
+				&      & $e_{j}$ {--} эталонное значение для j-го нейрона. \\
+			\end{tabular}
+			
+			\item[в)] для каждого слоя нейронной сети происходит изменение весовых коэффициентов и порогов нейронных элементов в соответствии с обобщенным дельта-правилом:
+			
+			\formulaspace \par \redline 
+			$w_{ij}(t+1) = w_{ij}(t) - \alpha \gamma_{j} F'(S_{j}) y_{i} $\hfill (\thechaptercntr .\theformulacntr) \redline
+			\formulaspace \addtocounter{formulacntr}{1}
+			
+			\formulaspace \par \redline 
+			$T_{j}(t+1) = T_{j}(t) + \alpha \gamma_{j} F'(S_{j}) $\hfill (\thechaptercntr .\theformulacntr) \redline
+			\formulaspace \addtocounter{formulacntr}{1}
+			
+			\begin{tabular}{p{0,875cm}p{0,3cm}p{11,175cm}}
+			& где  & $E$ {--} среднеквадратичная ошибка для одного образа; \\
+			&      & $y_{i}$ {--} выходное значение для i-го нейрона; \\
+			&      & $\alpha$ {--} шаг обучения нейронной сети; \\
+			&      &  $w_{ij}$ {--} синаптическая связь между i-м и j-м нейроном различных слоёв; \\
+			&      & $T_{j}$ {--} порог j-го нейрона. \\
+			\end{tabular}
+			
+		\end{itemize}
+		
+		\addtocounter{itemcntr}{1}
+		
+		\item[\theitemcntr. ] Последовательно подаются входные образы из обучающей выборки $k = \overline{1,L}$, и вычисляется суммарная квадратичная ошибка нейронной сети:
+		
+		\formulaspace \par \redline 
+		$E_{s} = \frac{1}{2} \sum \limits _{j}^{} (y_{j}^{k} - e_{j}^{k})^{2} $\hfill (\thechaptercntr .\theformulacntr) \redline
+		\formulaspace \addtocounter{formulacntr}{1}
+		
+		\begin{tabular}{p{0,875cm}p{0,3cm}p{11,175cm}}
+			& где  & $ L $ {--} размерность обучающей выборки;\\
+			&      & $y_{j}$ {--} выходное значение для j-го нейрона;                                                 \\
+			&      & $e_{j}$ {--} эталонное значение для j-го нейрона. \\
+		\end{tabular}
+		
+		\addtocounter{itemcntr}{1}
+		
+		
+		\item[\theitemcntr. ] Если $E_s > E_e$ то происходит переход к шагу 3 алгоритма. В противном случае алгоритм обратного распространения ошибки заканчивается. Таким образом, данный алгоритм функционирует до тех пор, пока суммарная квадратичная ошибка сети не станет меньше заданной, т. е. $E_s \leq E_e$ .
+		
+		\addtocounter{itemcntr}{1}
+		
+		\setcounter{itemcntr}{1}
+	\end{itemize}
+	
+	
+	
+%	\par \redline 1. Задается шаг обучения $\alpha$  $(0 < \alpha < 1)$ и желаемая среднеквадратичная ошибка нейронной сети $E_e$.
+%	\par \redline 2. Случайным образом инициализируются весовые коэффициенты и пороговые значения нейронной сети в достаточно узком диапазоне значений, например [–0,1; 0,1].
+%	\par \redline 3. Последовательно подаются входные образы из обучающей выборки $k = \overline{1,L}$ на вход нейронной сети и для каждого входного образа
+%	выполняются следующие действия:
+%	
+%	\par \redline a) производится фаза прямого распространения входного образа по нейронной сети и вычисляется выходная активность всех нейронных элементов сети:
+%	
+%		\formulaspace \par \redline 
+%	$y_{j} = F(\sum \limits _{i}^{} w_{ij}y_{i} - T_{j}) $
+%	\hfill (\thechaptercntr .\theformulacntr) \redline
+%	\formulaspace \addtocounter{formulacntr}{1}
+%	
+%	\begin{tabular}{p{0,875cm}p{0,3cm}p{15,175cm}}
+%		& где  & $j$ {--} где индекс j характеризует нейроны следующего слоя по отношению к
+%		слою i; \\
+%		&      & $y_{i}$ {--} выходное значение i-го нейрона ; \\
+%		&      & $w_{ij}$ {--} весовой коэффициент i-го нейрона; \\
+%		&      & $T_{j}$ {--} порог j-го нейрона. \\
+%	\end{tabular}
+%	
+%	\par \redline б) производится фаза обратного распространения сигнала, в результате которой определяется ошибка $\gamma_{j}$, $j=1,2,\dots, $нейронных элементов
+%	для всех слоев сети. 
+%	
+%	\formulaspace \par \redline 
+%	$\gamma_{j} = y_{j} - e_{j} $\hfill (\thechaptercntr .\theformulacntr) \redline
+%	\formulaspace \addtocounter{formulacntr}{1}
+%	
+%	\formulaspace \par \redline 
+%	$\gamma_{i} =  \sum \limits _{j}^{} \gamma_{j} F'(S_{j}) w_{ij}$\hfill (\thechaptercntr .\theformulacntr) \redline
+%	\formulaspace \addtocounter{formulacntr}{1}
+%	
+%	\begin{tabular}{p{0,875cm}p{0,3cm}p{15,175cm}}
+%		& где  & $w_{ij}$ {--} синаптическая связь между i-м и j-м нейроном различных слоёв; \\
+%		&      & $S_{j}$ {--} взвешенная сумма j-го нейрона; \\
+%		&      & $y_{j}$ {--} выходное значение для j-го нейрона; \\
+%		&      & $e_{j}$ {--} эталонное значение для j-го нейрона. \\
+%	\end{tabular}
+%
+%	\par \redline в) для каждого слоя нейронной сети происходит изменение весовых коэффициентов и порогов нейронных элементов в соответствии с обобщенным дельта-правилом:
+%
+%\formulaspace \par \redline 
+%$w_{ij}(t+1) = w_{ij}(t) - \alpha \gamma_{j} F'(S_{j}) y_{i}} $\hfill (\thechaptercntr .\theformulacntr) \redline
+%\formulaspace \addtocounter{formulacntr}{1}
+%
+%\formulaspace \par \redline 
+%$T_{j}(t+1) = T_{j}(t) + \alpha \gamma_{j} F'(S_{j}) $\hfill (\thechaptercntr .\theformulacntr) \redline
+%\formulaspace \addtocounter{formulacntr}{1}
+%
+%\begin{tabular}{p{0,875cm}p{0,3cm}p{15,175cm}}
+%	& где  & $E$ {--} среднеквадратичная ошибка для одного образа; \\
+%	&      & $y_{i}$ {--} выходное значение для i-го нейрона; \\
+%	&      & $\alpha$ {--} шаг обучения нейронной сети; \\
+%	&      &  $w_{ij}$ {--} синаптическая связь между i-м и j-м нейроном различных слоёв; \\
+%	&      & $T_{j}$ {--} порог j-го нейрона. \\
+%\end{tabular}
+%
+%	\par \redline 4. Последовательно подаются входные образы из обучающей выборки $k = \overline{1,L}$, и вычисляется суммарная квадратичная ошибка нейронной сети:
+%	
+%	\formulaspace \par \redline 
+%	$E_{s} = \frac{1}{2} \sum \limits _{j}^{} (y_{j}^{k} - e_{j}^{k})^{2} $\hfill (\thechaptercntr .\theformulacntr) \redline
+%	\formulaspace \addtocounter{formulacntr}{1}
+%	
+%	\begin{tabular}{p{0,875cm}p{0,3cm}p{15,175cm}}
+%		& где  & $ L $ {--} размерность обучающей выборки;\\
+%        &      & $y_{j}$ {--} выходное значение для j-го нейрона;                                                 \\
+%		&      & $e_{j}$ {--} эталонное значение для j-го нейрона. \\
+%	\end{tabular}
+%	
+%	\par \redline 5. Если $E_s > E_e$ то происходит переход к шагу 3 алгоритма. В противном случае алгоритм обратного распространения ошибки заканчивается. Таким образом, данный алгоритм функционирует до тех пор, пока суммарная квадратичная ошибка сети не станет меньше заданной, т. е. $E_s \leq E_e$ .
 	
 	\par \redline Существует также другой критерий остановки алгоритма: алгоритм	продолжается до тех пор, пока не перестанут изменяться синаптические связи или значения суммарной квадратичной ошибки сети. Аналогичным образом алгоритм обратного распространения ошибки определяется для группового обучения. В этом случае модификация синаптических связей сети происходит после подачи группы образов на нейронную сеть
+	
+	\par
 }
 
 \subtitlespace
@@ -447,7 +793,6 @@ $T_{j}(t+1) = T_{j}(t) + \alpha \gamma_{j} F'(S_{j}) $\hfill (\thechaptercntr .\
 \subtitlespace
 
 {\gostFont
-	
 	\par \redline Модуль прогнозирования должен выполнять прогноз технологического процесса пастеризационной установки. Для этого ему необходимо получать данные технологического процесса пастеризационной установки с помощью программируемого микроконтроллера, использующего платформу PLCnext Technology. По этой причине, программа должна быть написана на низкоуровневом языке программирования, а именно на C++, который поддерживается данным микроконтроллером. 
 	
 	\par \redline Поскольку процесс пастеризации происходит непрерывно, то программа должна работать в режиме реального времени и своевременно снабжать необходимой информацией о прогнозах поведения пастеризационной установки. 
@@ -510,7 +855,7 @@ $T_{j}(t+1) = T_{j}(t) + \alpha \gamma_{j} F'(S_{j}) $\hfill (\thechaptercntr .\
 	\item[\theitemcntr. ] Объект может скрыть реализацию от пользователя и иных объектов.[22]
 	\addtocounter{itemcntr}{1}
 	
-	\item[\theitemcntr. ] Объект скрывает внутреннее состояние от пользователя и от иных объектов.
+	\item[\theitemcntr. ] Объект скрывает внутреннее состояние от пользователя и от иных объектов, представляя исключительно интерфейс для взаимодействия.
 	\addtocounter{itemcntr}{1}
 	
 	\setcounter{itemcntr}{1}
@@ -522,7 +867,61 @@ $T_{j}(t+1) = T_{j}(t) + \alpha \gamma_{j} F'(S_{j}) $\hfill (\thechaptercntr .\
 
 \par \redline Абстракция {--} в зависимости от автора данная парадигма может выделяться в отдельные парадигмы Объектно-Ориентированного Программирования, а может и игнорироваться и записываться, как часть иных парадигм. В общем случае данная парадигма утверждает, что у каждого объекта можно выделить основные общие для всех объектов характеристики и привести взаимодействие с ними к некому единому принципу.
 
-\par \redline  
+\par \redline  Для реализации данных парадигм было решено применять партерны проектирования, такие как:
+
+\begin{itemize}[leftmargin=2.15cm, labelwidth=0.65cm, labelsep=0.0cm] 
+	
+	\item[•] Фабричный метод.
+	
+	\item[•] Строитель. 
+	
+\end{itemize}
+
+\par \redline  Данное решение было принято ввиду наличия иерархии и вложенности классов, по схеме указанной на рисунке \thechaptercntr.\theimagecntr.
+
+\begin{figure}[htb]
+	\centering
+	\def\svgwidth{\textwidth}
+	\includesvg{images/neiron.svg}
+	\caption*{\gostFont Рисунок \thechaptercntr .\theimagecntr \spc {--} Схема нейрона}
+	\label{fig:ris1}
+\end{figure} 
+
+\addtocounter{imagecntr}{1}
+
+\par \redline  Класс NeuralNetwork реализует композицию по отношению к Layer. Layer реализует композицию по отношению к Neiron. Это означает, что класс NeuralNetwork не может существовать без класса Layer, а класс Layer не может сущетсвовать без Neiron. Уничтожение объекта класса NeuralNetwork рекуррентно ведет за собой уничтожение объектов класса Layer.  Уничтожение объекта класса Layer рекуррентно ведет за собой уничтожение объектов класса Neiron.
+
+\par \redline  В рамках проектирования было решено, что класс Neiron будет являться абстрактным классом (рис.\thechaptercntr .\theimagecntr.) реализующим интерфейс для взаимодействия с классом Layer. Класс Neiron обеспечивает работу отдельного нейрона в нейронной сети.
+
+\begin{figure}[htb]
+	\centering
+	\def\svgwidth{\textwidth}
+	\includesvg{images/neiron.svg}
+	\caption*{\gostFont Рисунок \thechaptercntr .\theimagecntr \spc {--} Схема нейрона}
+	\label{fig:ris1}
+\end{figure} 
+
+\addtocounter{imagecntr}{1}
+
+\par \redline  Решение сделать класс Neiron Абстрактным стало следствием того, что в [12] было указано, что все нейронные сети применяемые на практике являются перестроенными. Это означает, что в сущности разные нейронные сети вроде RNN, CNN, LSTM, GRU и многие другие отличаются исключительно типом применяемых нейронов.
+
+\par \redline Поэтому применение именно для нейронов абстрактных классов является оптимальным решением.  
+
+\par \redline В рамках проектирования было решено, что класс Layer будет являться будет являться контейнером для производных от класса Neiron. Класс Layer реализует методы взаимодействия с классом Neiron инкапсулируя доступ к объектам данного класса. Данный класс обеспечивает работу слоя нейронной сети, обеспечивая обучение нейронов нейронной сети и их работу. 
+
+\par \redline Класс NeuralNetwork будет являться контейнером для объектов класса Layer. Класс NeuralNetwork реализует методы взаимодействия с классом Layer инкапсулируя доступ к объектам данного класса. Данный класс обеспечивает работу слоёв нейронной сети и преобразование входного вектора значений в выходной вектор значений. 
+
+\par \redline Класс AdapterBegin реализует приём и отправление входного вектора значений в класс NeuralNetwork.  
+
+\par \redline  Класс AdapterEnd реализует получение выходного вектора значений из класс NeuralNetwork для дальнейшей передачи пользователю, либо в класс Director.
+
+\par \redline  Класс Director реализует работу комплекса классов реализующих нейронную сеть. Данный класс инкапсулирует доступ к классам AdapterBegin, AdapterEnd и NeuralNetwork скрывая реализацию от пользователя и инкапсулируя операции от других объектов. 
+
+\par \redline  Класс Builder реализует функционал паттерна строитель. Данный класс занимается конфигурацией нейронной сети. Построением связей и определением нейронов.
+
+\par \redline  Класс FactoryNeiron реализует функционал паттерна фабричный метод. Данный класс занимается созданием объектов класса Neiron. Вызывается классом Builder.
+
+\par \redline  Класс Teacher реализует функционал обучения нейронной сети. Данный класс занимается обучением нейронной сети. Вызывается классом Director.
 
 \par
 
