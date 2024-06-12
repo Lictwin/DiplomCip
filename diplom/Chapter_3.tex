@@ -38,7 +38,7 @@
   
   \par \redline Данные описывают состояние моечной станции круглые сутки в течении почти двух с половиной лет. Это нам позволяет говорить о большом покрытии данных. Это значит, что данные отражают все состояния объекта. Также мы можем говорить об информативности данных, поскольку она отражает реальный технологический процесс.
   
-  \par \redline Для прояснения дальнейших моментов, необходимо обратить внимание на то, что данные были собраны с помощью датчиков, поэтому данные являются надёжными и не подверженными к большинству видов смещений – несогласованность данных с явлением, которые эти данные описывают.  Однако, эти данные всё-таки могут быть подвержены систематическому смещению, возникающее при измерениях или наблюдениях с помощью некоторого устройства, поскольку качество и характеристики устройства влияют на качество самих данных. Однако, мы можем игнорировать данное смещение, поскольку дальнейшая работа будет построена с теми же датчиками, а потому мы может говорить и о ещё одной черте качественных данных, а именно о том, что данные отражают реальный входы. Это значит, что будущая сеть будет обучаться на данных, представленных в таком виде, в котором они будут в последствии приходить на входы сети. В будущем будет упомянуто данное свойство и будет сказано о некоторых подводных камнях, связанных с этим.
+  \par \redline Для прояснения дальнейших моментов, необходимо обратить внимание на то, что данные были собраны с помощью датчиков, поэтому данные являются надёжными и не подверженными к большинству видов смещений {--} несогласованность данных с явлением, которые эти данные описывают.  Однако, эти данные всё-таки могут быть подвержены систематическому смещению, возникающее при измерениях или наблюдениях с помощью некоторого устройства, поскольку качество и характеристики устройства влияют на качество самих данных. Однако, мы можем игнорировать данное смещение, поскольку дальнейшая работа будет построена с теми же датчиками, а потому мы может говорить и о ещё одной черте качественных данных, а именно о том, что данные отражают реальный входы. Это значит, что будущая сеть будет обучаться на данных, представленных в таком виде, в котором они будут в последствии приходить на входы сети. В будущем будет упомянуто данное свойство и будет сказано о некоторых подводных камнях, связанных с этим.
   
   \par \redline Необходимо отметить, что данные не являются результатом обратной связи, т.е. не являются результатом самой модели, поскольку при сборе данных модели ещё не существовало.
   
@@ -50,8 +50,7 @@
   			\par \redline \phantom{hellow} 
   			\par \redline \phantom{hellow} 
   			\par \redline \phantom{hellow} 
-  			\par \redline \phantom{hellow} 
-  			\par \redline \phantom{hellow} 
+  			\par \redline \phantom{hellow}  
   			\par \redline \phantom{hellow} 
   			\par \redline \phantom{hellow}
   			\par \redline \phantom{hellow}
@@ -110,16 +109,16 @@
   	\item[\theitemcntr. ] Приведение данных к табличному виду.
   	\addtocounter{itemcntr}{1}
   	
-  	\item[\theitemcntr. ] Аппроксимация данных.
-  	\addtocounter{itemcntr}{1}
-  	
-  	\item[\theitemcntr. ] Уменьшение размерности данных.
+  	\item[\theitemcntr. ] Уменьшение размерности данных.[8]
   	\addtocounter{itemcntr}{1}
   	
   	\item[\theitemcntr. ] Разделение данных.
   	\addtocounter{itemcntr}{1}
   	
-  	\item[\theitemcntr. ] Устранение аномалий данных.
+  	\item[\theitemcntr. ] Устранение аномалий данных.[8]
+  	\addtocounter{itemcntr}{1}
+  	
+  	\item[\theitemcntr. ] Аппроксимация данных.[9,10]
   	\addtocounter{itemcntr}{1}
   	
   	\item[\theitemcntr. ] Устранение некорректных данных.
@@ -187,7 +186,7 @@
   <время>;<ЗД1>;< ЗД2>;< ЗД3>;< ЗД4>;< ЗД5>;< ЗД6>
   \end{Center}
 
-  \par \redline где, ЗДН – значение датчика под номером Н. 
+  \par \redline где, ЗДН {--} значение датчика под номером Н. 
 
   \par \redline Выполнив алгоритм, мы получаем аккуратные данные в табличном виде. Хранить их предпочтительно в бинарном виде, поскольку в формате .csv такие данные будут занимать очень много места, да и время на их чтение или запись будет довольно-таки немаленьким. 
 
@@ -210,14 +209,14 @@ $ y = \frac{\left(z - c\right) \times \left(d - c\right)}{b - a} + a $
 
   \par \redline Операции скейлинга предполагают те модели, выходные элементы которых используют активирующие функции, имеющие горизонтальные асимптоты. Другими словами, активирующие функции, ограниченные по оси ординат. В таком случае, перед обучение или прогнозированием данных, будет проведена операция скейлинга, после основная операция, а в завершении операция обратного скейлинга. Т.к. данные уже изучены, можно с полной уверенность сказать, что операцию скейлинга для данных по оси ординат мы можем провести.
   
-  \par \redline В итоге обработки данных получаем данные, выровненные по времени и приведенные к табличной форме. Визуализацию данных представлена на рисунках \thechaptercntr.\theimagecntr {--} \thechaptercntr.8.
+  \par \redline В итоге обработки данных получаем данные, выровненные по времени и приведенные к табличной форме. Визуализацию данных представлена на рисунках \thechaptercntr.\theimagecntr {--} \thechaptercntr.6.
 
   \par
   
     \begin{sidewaysfigure}
   	\centering
   	\def\svgwidth{\textwidth}
-  	\includegraphics[scale=0.6]{images/MLADex.png}
+  	\includegraphics[scale=0.6]{images/data_1_visual_2.jpg}
   	\caption*{\gostFont Рисунок \thechaptercntr .\theimagecntr \spc {--} Пример работы предиктового детектора системы Kaspersky MLAD}
   	\label{fig:MLADBlackBox}
   \end{sidewaysfigure} \addtocounter{imagecntr}{1}
@@ -225,7 +224,7 @@ $ y = \frac{\left(z - c\right) \times \left(d - c\right)}{b - a} + a $
      \begin{sidewaysfigure}
   	\centering
   	\def\svgwidth{\textwidth}
-  	\includegraphics[scale=0.6]{images/MLADex.png}
+  	\includegraphics[scale=0.6]{images/data_1_visual_3.jpg}
   	\caption*{\gostFont Рисунок \thechaptercntr .\theimagecntr \spc {--} Пример работы предиктового детектора системы Kaspersky MLAD}
   	\label{fig:MLADBlackBox}
   \end{sidewaysfigure} \addtocounter{imagecntr}{1}
@@ -233,7 +232,7 @@ $ y = \frac{\left(z - c\right) \times \left(d - c\right)}{b - a} + a $
      \begin{sidewaysfigure}
   	\centering
   	\def\svgwidth{\textwidth}
-  	\includegraphics[scale=0.6]{images/MLADex.png}
+  	\includegraphics[scale=0.6]{images/data_1_visual_4.jpg}
   	\caption*{\gostFont Рисунок \thechaptercntr .\theimagecntr \spc {--} Пример работы предиктового детектора системы Kaspersky MLAD}
   	\label{fig:MLADBlackBox}
   \end{sidewaysfigure} \addtocounter{imagecntr}{1}
@@ -241,7 +240,7 @@ $ y = \frac{\left(z - c\right) \times \left(d - c\right)}{b - a} + a $
      \begin{sidewaysfigure}
   	\centering
   	\def\svgwidth{\textwidth}
-  	\includegraphics[scale=0.6]{images/MLADex.png}
+  	\includegraphics[scale=0.6]{images/data_1_visual_3.jpg}
   	\caption*{\gostFont Рисунок \thechaptercntr .\theimagecntr \spc {--} Пример работы предиктового детектора системы Kaspersky MLAD}
   	\label{fig:MLADBlackBox}
   \end{sidewaysfigure} \addtocounter{imagecntr}{1}
@@ -249,7 +248,7 @@ $ y = \frac{\left(z - c\right) \times \left(d - c\right)}{b - a} + a $
      \begin{sidewaysfigure}
   	\centering
   	\def\svgwidth{\textwidth}
-  	\includegraphics[scale=0.6]{images/MLADex.png}
+  	\includegraphics[scale=0.6]{images/data_3_visual_3.jpg}
   	\caption*{\gostFont Рисунок \thechaptercntr .\theimagecntr \spc {--} Пример работы предиктового детектора системы Kaspersky MLAD}
   	\label{fig:MLADBlackBox}
   \end{sidewaysfigure} \addtocounter{imagecntr}{1}
@@ -257,23 +256,7 @@ $ y = \frac{\left(z - c\right) \times \left(d - c\right)}{b - a} + a $
      \begin{sidewaysfigure}
   	\centering
   	\def\svgwidth{\textwidth}
-  	\includegraphics[scale=0.6]{images/MLADex.png}
-  	\caption*{\gostFont Рисунок \thechaptercntr .\theimagecntr \spc {--} Пример работы предиктового детектора системы Kaspersky MLAD}
-  	\label{fig:MLADBlackBox}
-  \end{sidewaysfigure} \addtocounter{imagecntr}{1}
-  
-     \begin{sidewaysfigure}
-  	\centering
-  	\def\svgwidth{\textwidth}
-  	\includegraphics[scale=0.6]{images/MLADex.png}
-  	\caption*{\gostFont Рисунок \thechaptercntr .\theimagecntr \spc {--} Пример работы предиктового детектора системы Kaspersky MLAD}
-  	\label{fig:MLADBlackBox}
-  \end{sidewaysfigure} \addtocounter{imagecntr}{1}
-  
-     \begin{sidewaysfigure}
-  	\centering
-  	\def\svgwidth{\textwidth}
-  	\includegraphics[scale=0.6]{images/MLADex.png}
+  	\includegraphics[scale=0.6]{images/data_3_visual_4.jpg}
   	\caption*{\gostFont Рисунок \thechaptercntr .\theimagecntr \spc {--} Пример работы предиктового детектора системы Kaspersky MLAD}
   	\label{fig:MLADBlackBox}
   \end{sidewaysfigure} \addtocounter{imagecntr}{1}
